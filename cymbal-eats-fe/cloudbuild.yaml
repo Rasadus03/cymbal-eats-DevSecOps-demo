@@ -8,7 +8,7 @@ steps:
     args:
     - 'run'
     - 'deploy'
-    - 'cymbal-eats-fe'
+    - 'cymbal-eats-fe-test-again'
     - '--image'
     - 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/cymbal-eats-fe'
     - '--region'
