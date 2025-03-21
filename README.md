@@ -1,4 +1,4 @@
-# cymbal-eats-DevSecOps-demo test
+# cymbal-eats-DevSecOps-demo
 
 
 
