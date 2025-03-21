@@ -1,0 +1,39 @@
+{
+  "mockRestaurants": [
+    {
+      "id": 1,
+      "name": "Pizza Palace",
+      "cuisine": ["Italian", "Pizza", "Pasta", "desert", "salad", "coffee"],
+      "description": "Delicious pizzas and pastas.",
+      "image": "https://storage.googleapis.com/cloudnext-demo-cymbaleats/restaurants/Pizza%20Palace/logo.png",
+      "menu": [
+        { "id": 101, "name": "Margherita Pizza", "price": 12.99, "description": "Classic tomato and mozzarella." },
+        { "id": 102, "name": "Pepperoni Pizza", "price": 14.99, "description": "Spicy pepperoni and cheese." },
+        { "id": 103, "name": "Pasta Carbonara", "price": 15.99, "description": "creamy carbonara." }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Sushi Spot",
+      "cuisine": ["Japanese", "tea", "Smothies"],
+      "description": "Fresh sushi and sashimi.",
+      "image": "https://storage.googleapis.com/cloudnext-demo-cymbaleats/restaurants/Sushi%20Spot/logo.png",
+      "menu": [
+        { "id": 201, "name": "California Roll", "price": 8.99, "description": "Crab, avocado, and cucumber." },
+        { "id": 202, "name": "Salmon Nigiri", "price": 9.99, "description": "Fresh salmon over rice." },
+        { "id": 203, "name": "Spicy Tuna Roll", "price": 10.99, "description": "Spicy tuna roll." }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Burger Bistro",
+      "cuisine": ["American", "Burger", "Pasta", "desert", "salad", "coffee"],
+      "description": "Juicy burgers and crispy fries.",
+      "image": "https://storage.googleapis.com/cloudnext-demo-cymbaleats/restaurants/Burger%20Bistro/logo.png",
+      "menu": [
+        { "id": 301, "name": "Classic Cheeseburger", "price": 10.99, "description": "Beef patty with cheese and toppings." },
+        { "id": 302, "name": "Bacon Burger", "price": 12.99, "description": "Beef patty with bacon and cheese." },
+        { "id": 302, "name": "Fries", "price": 5.99, "description": "Crispy fries." }
+      ]
+    }
+  ]}
