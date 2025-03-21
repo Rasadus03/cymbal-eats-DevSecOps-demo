@@ -25,3 +25,5 @@ steps:
     waitFor: [ 'maven-build' ]
 images:
 - 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/order-mgmt-api'
+options:
+    logging: CLOUD_LOGGING_ONLY
