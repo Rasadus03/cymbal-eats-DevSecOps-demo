@@ -15,5 +15,11 @@ function HomePage() {
     </div>
   );
 }
-
+HomePage.propTypes = {
+  customer: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    uuid: PropTypes.string.isRequired,
+    photoURL: PropTypes.string.isRequired,
+  }).isRequired};
 export default HomePage;
