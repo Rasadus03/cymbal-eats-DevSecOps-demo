@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/mvn'
-    args: ['clean', 'package', '-Dmaven.test.skip=true','-f ./order-mgmt-msa/pom.xml' ] # added the step to build the jar
+    args: ['clean', 'package', '-Dmaven.test.skip=true','-forder-mgmt-msa/pom.xml' ] # added the step to build the jar
     id: 'maven-build'
   - name: 'gcr.io/cloud-builders/docker'
     id: 'image-build'
