@@ -1,10 +1,10 @@
 steps:
   - name: 'gcr.io/cloud-builders/mvn'
-    args: ['clean', 'package', '-Dmaven.test.skip=true' ] # added the step to build the jar
+    args: ['clean', 'package', '-Dmaven.test.skip=true' , '-frestaurant-msa/pom.xml'] # added the step to build the jar
     id: 'maven-build'
   - name: 'gcr.io/cloud-builders/docker'
     id: 'image-build'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/restaurants-api', '--build-arg=JAR_FILE=target/restaurants-0.1.jar', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/restaurants-api', '--build-arg=JAR_FILE=target/restaurants-0.1.jar', './restaurant-msa']
     waitFor: ['maven-build'] # Wait for the Maven build to complete
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'push', 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/restaurant-api' ]
@@ -22,6 +22,20 @@ steps:
     - '--allow-unauthenticated'
     - '--set-env-vars'
     - 'GOOGLE_CLOUD_PROJECT=cloud-next25-screendemo'
+    waitFor: [ 'maven-build' ]
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+    - 'run'
+    - 'services'
+    - 'add-iam-policy-binding'
+    - 'restaurants-api'
+    - '--region'
+    - 'us-central1'
+    - '--member'
+    - 'allUsers'
+    - '--role'
+    - 'roles/run.invoker'
     waitFor: [ 'maven-build' ]
 images:
 - 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/restaurants-api'
