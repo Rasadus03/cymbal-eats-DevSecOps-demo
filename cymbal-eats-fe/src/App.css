@@ -1,0 +1,320 @@
+/* src/App.css */
+
+/* General Styles */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the app takes at least the full viewport height */
+}
+
+.imageLogo{
+  width: 50px;
+  height: 50px;
+  object-fit: fill;
+}
+
+/* Header Styles */
+.app-header {
+  background-color: #f3c7e5;
+  color: rgb(246, 0, 197);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header .logo a {
+  color: rgb(246, 0, 197);
+  text-decoration: none;
+  font-size: large;
+  font-weight: bold;
+}
+.signin-button {
+  align-items: end;
+}
+.app-header .warning p {
+  color: rgb(193, 29, 159);
+  text-decoration: none;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.app-header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.app-header nav ul li {
+  margin-left: 20px;
+  /*font-family: Georgia, 'Times New Roman', Times, serif;*/
+  font-size: large;
+}
+
+.app-header nav a {
+  color: rgb(246, 0, 197);
+  text-decoration: none;
+}
+
+.app-header nav a:hover {
+    text-decoration: underline;
+}
+.app-header-button{
+  background-color: rgb(246, 0, 197);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5em;
+  margin-top: -10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.app-header-button:hover {
+  background-color: rgb(176, 45, 150);
+}
+/* Restaurant List Styles */
+.restaurant-list {
+  padding: 20px;
+}
+.restaurant-cards-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Spacing between cards */
+}
+
+.restaurant-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out; /* Add a subtle hover effect */
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px); /* Lift the card slightly on hover */
+}
+
+.restaurant-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.restaurant-card h3 {
+  margin-top: 0;
+   margin-bottom: 5px;
+}
+.restaurant-card h3 a{
+    text-decoration: none;
+    color: black;
+}
+.restaurant-card h3 a:hover{
+    text-decoration: underline;
+}
+
+.restaurant-card p {
+  margin-bottom: 5px;
+  color: #555;
+}
+.view-menu-button {
+    background-color: rgb(246, 0, 197); 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.view-menu-button:hover {
+    background-color: rgb(176, 45, 150); /* Darker Green */
+}
+
+
+/* Restaurant Details Styles */
+
+.restaurant-details {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+   margin: 20px;
+}
+.restaurant-details img{
+    width: 40%;
+    border-radius: 5px;
+}
+
+.restaurant-details h2 {
+  margin-top: 0;
+}
+
+.restaurant-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.menu-item img{
+  width: 100px;
+  height: 100px;
+  object-fit: fill;
+}
+
+.menu-item span{
+    font-style: italic;
+    color: rgb(74, 0, 246);
+    max-width: 50%;
+}
+
+.menu-item button {
+  background-color: rgb(246, 0, 197);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Cart Styles */
+.cart {
+  padding: 20px;
+   background-color: white;
+  border-radius: 8px;
+   margin: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+.cart-item div{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cart-item img{
+  width: 100px;
+  height: 100px;
+  object-fit: fill;
+}
+
+.cart button, .checkout button {
+  background-color: rgb(145, 35, 123);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Checkout Styles */
+.checkout {
+  padding: 20px;
+   background-color: white;
+  border-radius: 8px;
+   margin: 20px;
+}
+
+.checkout form div {
+  margin-bottom: 10px;
+}
+
+.checkout label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.checkout input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgb(117, 27, 99);
+  border-radius: 4px;
+}
+
+/* Order Confirmation Styles */
+.order-confirmation {
+  padding: 20px;
+   background-color: white;
+  border-radius: 8px;
+   margin: 20px;
+    text-align: center;
+}
+
+/* Home Page Styles */
+.home-page {
+  text-align: center;
+  padding: 50px;
+}
+.link-to-restaurants-button{
+   background-color: rgb(246, 0, 197); 
+    border: none;
+    color: #f4f4f4;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.link-to-restaurants-button:hover{
+ background-color: rgb(176, 45, 150); 
+}
+
+/*Footer*/
+.footer{
+    text-align: center;
+    background-color: #f3c7e5;
+    color: rgb(246, 0, 197);
+    padding: 1rem 0;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+/* Search Bar */
+.search-bar {
+    padding: 1rem;
+    text-align: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid #f4f4f4;
+    border-radius: 10px;
+    width: 80%; /* Adjust as needed */
+    max-width: 500px; /* Optional: Prevent input from becoming too wide */
+}
