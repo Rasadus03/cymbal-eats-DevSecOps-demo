@@ -24,7 +24,7 @@ steps:
     - '--allow-unauthenticated'
     - '--set-env-vars'
     - 'GOOGLE_CLOUD_PROJECT=cloud-next25-screendemo'
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
     - 'run'
