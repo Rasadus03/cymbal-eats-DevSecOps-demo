@@ -20,11 +20,13 @@ import { getAuth } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import {signOut}  from "firebase/auth";
+import { Console } from 'winston/lib/winston/transports';
 
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [customer, setCustomer] = useState([]);
+  const [customerName, setCustomerName] = useState([]);
   const [shoppingCartItems, setCart] = useState([]);
   const [cartItemsCount: number , setCartItemsCount] = useState();
   const [restaurants, setRestaurants] = useState([]);  // State to store restaurant data
@@ -51,6 +53,8 @@ function App() {
         document.getElementById('signInButton').innerText = 'Sign Out';
        //2 document.getElementById('warningText').innerText = '                                                                    ';
         setCustomer(data);
+        console.log( (customer instanceof Map) +"testtttttt");
+        setCustomerName(user.displayName);
         fetchCartCount();
       } else {
         // No user is signed in.
@@ -59,6 +63,7 @@ function App() {
         data.set("email", 'None');
         setCustomer(data);
         setCartItemsCount(0);
+        setCustomerName('None');
       }
 
 
@@ -67,7 +72,8 @@ function App() {
   }
   useEffect(() => {
     initApp();
-  },[]);
+    console.log("customer name===="+customerName);
+  },[!(customer instanceof Map)]);
 
   //load all Restaurants
   useEffect(() => {
@@ -104,11 +110,14 @@ function App() {
           data.set("email", result.user.email)
           data.set("uid", result.user.uid )
           data.set("photoURL", result.user.photoURL);
+          setCustomerName(result.user.displayName);
         })
         .catch(err => {
           console.log(`Error during sign in: ${err.message}`);
         });
-    setCustomer(data);
+    while (!(customer instanceof Map)){
+      setCustomer(data);
+    }
     console.log("user = "+ JSON.stringify(customer));
    //document.getElementById('warningText').innerText = '                                                                    ';
     //console.log("user name = "+customer.get("name"));
@@ -124,7 +133,11 @@ function App() {
     const data = new Map();
 
     data.set("email", 'None');
-    setCustomer(data);
+
+    while (!(customer instanceof Map)){
+      setCustomer(data);
+      setCustomerName('None');
+    }
    // document.getElementById('warningText').innerText = ' Please Signin to use our cool Application and get delicious Foot :)!';
   };
 
@@ -331,7 +344,7 @@ function App() {
         <Header cartItemCount={cartItemsCount} toogle={toggle} /> {/* Pass cart item count */}
         <SearchBar searchTerm={searchTerm} onSearchChange={handleSearchChange} />
         <Routes>
-          <Route path="/" element={<HomePage customer={customer} />} />
+          <Route path="/" element={<HomePage customerName={customerName} />} />
             <Route path="/restaurants" element={<RestaurantList restaurants={filteredRestaurants} />} /> {/* Pass filtered restaurants */}
           <Route
             path="/restaurants/:id"
