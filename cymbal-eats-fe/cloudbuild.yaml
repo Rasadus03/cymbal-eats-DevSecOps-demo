@@ -24,6 +24,19 @@ steps:
     - '--allow-unauthenticated'
     - '--set-env-vars'
     - 'GOOGLE_CLOUD_PROJECT=cloud-next25-screendemo'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+    - 'run'
+    - 'services'
+    - 'add-iam-policy-binding'
+    - 'cymbal-eats-fe'
+    - '--region'
+    - 'us-central1'
+    - '--member'
+    - 'allUsers'
+    - '--role'
+    - 'roles/run.invoker'
 images:
 - 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/cymbal-eats-fe'
 options:
