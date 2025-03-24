@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function HomePage() {
+function HomePage({customer}) {
   return (
     <div className="home-page">
        if {customer.get("name") !== "None" ? (
