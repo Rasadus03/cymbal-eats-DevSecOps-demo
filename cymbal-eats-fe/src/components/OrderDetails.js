@@ -26,7 +26,7 @@ function OrderDetails({  restaurants, customer, orders}) {
             "Content-Type": "Application/JSON",
           },
           body: JSON.stringify(order),
-        })..then(response => response.json())
+        }).then(response => response.json())
         .then(data => {
           console.log(" data ==== "+JSON.stringify(data));
           setOrderDetails(data);
