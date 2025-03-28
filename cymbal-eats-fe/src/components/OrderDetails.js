@@ -2,22 +2,22 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom'
 
 
-function OrderDetails({  restaurants, customer}) {
+
+function OrderDetails({  restaurants, customer, orders}) {
   const [orderDetails, setOrderDetails] = useState([]);
   const [data, setData] = useState();
-  const location = useLocation()
-  const order = location.state;
+  const {id} = useParams();
+  const order = orders.find((r) => r.orderId === parseInt(id));
   //get user-cart
     useEffect(() => {
 
       fetchOrderDetails();
 
     }, []);
-  console.log("order === " +  JSON.stringify(order));
     const fetchOrderDetails = async () => {
+      if (customer instanceof Map) {
       try {
         console.log("order === " +  JSON.stringify(order));
         fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
@@ -26,17 +26,19 @@ function OrderDetails({  restaurants, customer}) {
             "Content-Type": "Application/JSON",
           },
           body: JSON.stringify(order),
-        }).then((response) => data)
-            .catch((error) => {
-              console.log(error);
-            });
-        setData(data.json());
-        console.log("Fetched Order details:", data);
-        setOrderDetails(data);
-        console.log("Loaded Cart =" +data);
+        })..then(response => response.json())
+        .then(data => {
+          console.log(" data ==== "+JSON.stringify(data));
+          setOrderDetails(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       } catch (error) {
         console.error("Could not fetch order details :", error);
       }
+    }
     };
 
 
@@ -103,7 +105,42 @@ OrderDetails.propTypes = {
         })
       ).isRequired,
     })
-  ).isRequired
+  ).isRequired,
+  ,
+  orders: PropTypes.arrayOf(
+      PropTypes.shape({
+        estimatedDeliveryTime: PropTypes.string.isRequired,
+        deliveryTime: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
+        orderId: PropTypes.number.isRequired,
+        totalCost: PropTypes.number.isRequired, 
+        shippingAddress: PropTypes.arrayOf(
+            PropTypes.shape({
+            userId:  PropTypes.string.isRequired,
+            orderId: 1,
+            addressId: 1,
+            city:  PropTypes.string.isRequired,
+            street:  PropTypes.string.isRequired,
+            buildingNumber:  PropTypes.string.isRequired,
+            apartmentNumber:  PropTypes.string.isRequired,
+            zipCode:  PropTypes.string.isRequired
+            })).isRequired, 
+        orderItems: PropTypes.arrayOf(
+            PropTypes.shape({
+            restaurantId: PropTypes.number.isRequired,
+            orderId: PropTypes.number.isRequired,
+            userId: PropTypes.string.isRequired,
+            menuItemId: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            description:PropTypes.string,
+            imageURL: PropTypes.string.isRequired,
+            quantity: PropTypes.number.isRequired, 
+              timeAdded:PropTypes.string,
+            })
+        ).isRequired,
+      })
+  ).isRequired,
 };
 
 export default OrderDetails;

@@ -161,7 +161,7 @@ function App() {
   };
 
     const fetchCartCount = async () => {
-    try {
+      if (customer instanceof Map) {
       // Replace with your actual API endpoint
       const response2 = await fetch('https://cymbal-eats.com//shopping-cart-api/get-cart-item-count?user-id=' +customer.get("email"), {mode: 'no-cors'}); //  Use a relative path
       console.log("Response for cart count:", response2);
@@ -171,16 +171,8 @@ function App() {
       const data2 = await response2.json();
       console.log("Fetched cart count:", data2);
       setCartItemsCount(data2);
-    } catch (error) {
-      console.error("Could not fetch Cart Length:", error);
-      // Handle errors, e.g., display an error message to the user
-    }
+    } 
   };
- /* useEffect(() => {
- console.log ("customer = "+customer.get("email"));
-    fetchCartCount();
-  }, [cartItemsCount, customer]);
-*/
 
   const getRestaurantName = (restaurantId) => {
     const restaurant = restaurants.find(r => r.id === restaurantId);
@@ -189,7 +181,7 @@ function App() {
 
   // --- Cart Functionality ---
   const addToCart = async (restaurantId, item) => {
-    if (customer.get("name") !== "None") {
+    if (customer instanceof Map) {
     setCartItems([...cartItems, { ...item, restaurantId, quantity: 1 }]);
     const shoppingItem = {
       restaurantName: getRestaurantName(restaurantId),
@@ -219,7 +211,7 @@ function App() {
   };
 
     const removeFromCart = (restaurantId, item, setCart, shoppingCartItems) => {
-      if (customer.get("name") !== "None") {
+      if (customer instanceof Map) {
         setCartItems(cartItems.filter((item2) => item2.id !== item.id));
         setCart(shoppingCartItems.filter((item2) => item2.id !== item.id));
         setCartItemsCount(cartItemsCount - 1);
@@ -255,7 +247,7 @@ function App() {
   };
 
   const updateQuantity = (restaurantId, item, newQuantity, setCart, shoppingCartItems) => {
-    if (customer.get("name") !== "None") {
+    if (customer instanceof Map) {
       if (newQuantity <= 0) {
         removeFromCart(restaurantId, item); // Remove if quantity is 0 or less
         return;
@@ -300,7 +292,7 @@ function App() {
   };
 
   const clearCart = (userId, setCart) => {
-    if (customer.get("name") !== "None") {
+    if (customer instanceof Map) {
       setCartItems([]);
       setCart([]);
       setCartItemsCount(0);
@@ -354,10 +346,10 @@ function App() {
           <Route path="/checkout" element={<Checkout cartItems={cartItems} restaurants={restaurants} clearCart={clearCart} setCart={setCart} customer={customer}/>} /> {/*Pass clearCart*/}
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/orders" element={<Orders  restaurants={restaurants} customer={customer} />} />
-          <Route path="/orders-details" element={<Orders  restaurants={restaurants} customer={customer} />} />
+          <Route path="/orders-details" element={<Orders  restaurants={restaurants} customer={customer} setOrders={setOrders}  />} />
           <Route
-              path="/order-details"
-              element={<OrderDetails restaurants={restaurants}  customer={customer} />}
+              path="/order-details/:id"
+              element={<OrderDetails restaurants={restaurants}  customer={customer} orders={orders} />}
           />
           <Route path="*" element={<div>404 Not Found</div>} /> {/* Catch-all route */}
         </Routes>

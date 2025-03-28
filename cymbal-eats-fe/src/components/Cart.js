@@ -15,6 +15,7 @@ function Cart({  restaurants, removeFromCart, updateQuantity, clearCart, setCart
     }, []);
 
     const fetchShoppingCart = async () => {
+      if (customer instanceof Map) {
       try {
         const response = await fetch(
             'https://cymbal-eats.com/shopping-cart-api/view-shopping-cart?user-id='
@@ -33,6 +34,7 @@ function Cart({  restaurants, removeFromCart, updateQuantity, clearCart, setCart
         console.error("Could not fetch restaurant details :", error);
         // Handle errors, e.g., display an error message to the user
       }
+    }
     };
 
     const getTotalPrice = () => {
