@@ -106,7 +106,6 @@ OrderDetails.propTypes = {
       ).isRequired,
     })
   ).isRequired,
-  ,
   orders: PropTypes.arrayOf(
       PropTypes.shape({
         estimatedDeliveryTime: PropTypes.string.isRequired,

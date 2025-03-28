@@ -102,7 +102,7 @@ Orders.propTypes = {
         })
       ).isRequired,
     })
-  ).isRequired,
+  ).isRequired, 
   setOrders: PropTypes.func.isRequired,
 };
 
