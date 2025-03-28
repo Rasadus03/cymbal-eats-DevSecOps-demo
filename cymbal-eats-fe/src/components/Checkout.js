@@ -36,6 +36,7 @@ function Checkout({ cartItems, restaurants, clearCart, setCart, customer }) {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (customer instanceof Map) {
     const order = {
       user: {
         userId: customer.get("email")
@@ -68,7 +69,8 @@ function Checkout({ cartItems, restaurants, clearCart, setCart, customer }) {
     // Clear the cart and show confirmation
     setOrderPlaced(true);
     clearCart(order.user.userId, setCart); //clear the cart after checkout
-    navigate('/order-confirmation');  //redirect after checkout
+    navigate('/order-confirmation'); 
+       } //redirect after checkout
   };
 
    if (orderPlaced) {

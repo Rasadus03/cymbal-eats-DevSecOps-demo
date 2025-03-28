@@ -7,7 +7,7 @@ steps:
     args: ['build', '-t', 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/restaurants-api', '--build-arg=JAR_FILE=target/restaurants-0.1.jar', './restaurant-msa']
     waitFor: ['maven-build'] # Wait for the Maven build to complete
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/restaurant-api' ]
+    args: [ 'push', 'us-central1-docker.pkg.dev/cloud-next25-screendemo/cloud-next25-screendemo/restaurants-api' ]
     waitFor: ['maven-build', 'image-build']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud

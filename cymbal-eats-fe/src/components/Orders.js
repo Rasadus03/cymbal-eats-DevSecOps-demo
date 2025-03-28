@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 
-function Orders({ restaurants, customer}) {
-  const [orders, setOrders] = useState([]);
+function Orders({ restaurants, customer, setOrders}) {
+  const [orders, setOrders2] = useState([]);
   const [order, setOrder] = useState([]);
   //get user-cart
     useEffect(() => {
@@ -15,6 +15,7 @@ function Orders({ restaurants, customer}) {
     }, []);
 
     const fetchOrders = async () => {
+      if (customer instanceof Map) {
       try {
         const response = await fetch(
             'https://cymbal-eats.com/order-mgmt-api/list-orders?user-id='
@@ -25,11 +26,13 @@ function Orders({ restaurants, customer}) {
         }
         const data = await response.json();
         console.log("Fetched Orders:", data);
+        setOrders2(data);
         setOrders(data);
       } catch (error) {
         console.error("Could not fetch restaurant details :", error);
         // Handle errors, e.g., display an error message to the user
       }
+    }
     };
 
 
@@ -62,9 +65,8 @@ function Orders({ restaurants, customer}) {
                                 <div>
                                   Delivery Address: Street: {order.shippingAddress.street} - Building#: {order.shippingAddress.buildingNumber} - Apartment#: {order.shippingAddress.apartmentNumber} - City: {order.shippingAddress.city} - ZipCode# {order.shippingAddress.zipCode}
                                 </div>
-                              <Link  to={{
-                                pathname: `/order-details`,
-                                state: {order}
+                                <Link  to={{
+                                pathname: `/order-details/${order.orderId}`
                               }}>
                                     <button >Order Details</button>
                               </Link>
@@ -100,7 +102,8 @@ Orders.propTypes = {
         })
       ).isRequired,
     })
-  ).isRequired
+  ).isRequired, 
+  setOrders: PropTypes.func.isRequired,
 };
 
 export default Orders;
