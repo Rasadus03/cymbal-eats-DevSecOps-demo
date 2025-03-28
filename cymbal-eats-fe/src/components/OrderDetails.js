@@ -58,6 +58,7 @@ function OrderDetails({  restaurants, customer, orders}) {
     return (
         <div className="cart">
             <h2>Your Order Details</h2>
+            {orderDetails.orderItems !==  undefined ? (
                 <>
                     <ul>
                       <div>
@@ -78,6 +79,8 @@ function OrderDetails({  restaurants, customer, orders}) {
                         ))}
                     </ul>
                 </>
+            ):
+            <p>Loading....</p>}
         </div>
     );
 }
