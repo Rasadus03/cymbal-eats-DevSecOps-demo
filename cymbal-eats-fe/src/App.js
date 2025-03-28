@@ -27,7 +27,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [customer, setCustomer] = useState([]);
   const [customerName, setCustomerName] = useState([]);
-  const [shoppingCartItems, setCart] = useState([]);
+  const [shoppingCartItems, setCart] = useState([]); 
   const [cartItemsCount: number , setCartItemsCount] = useState();
   const [restaurants, setRestaurants] = useState([]);  // State to store restaurant data
   const [searchTerm, setSearchTerm] = useState("");  // State for search term
