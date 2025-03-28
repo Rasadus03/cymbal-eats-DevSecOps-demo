@@ -346,7 +346,7 @@ function App() {
           <Route path="/cart" element={<Cart restaurants={restaurants}  removeFromCart={removeFromCart} updateQuantity={updateQuantity} clearCart={clearCart} setCartItems={setCartItems} customer={customer}/>} />
           <Route path="/checkout" element={<Checkout cartItems={cartItems} restaurants={restaurants} clearCart={clearCart} setCart={setCart} customer={customer}/>} /> {/*Pass clearCart*/}
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
-          <Route path="/orders" element={<Orders  restaurants={restaurants} customer={customer} />} />
+          <Route path="/orders" element={<Orders  restaurants={restaurants} customer={customer} setOrders={setOrders} />} />
           <Route path="/orders-details" element={<Orders  restaurants={restaurants} customer={customer} setOrders={setOrders}  />} />
           <Route
               path="/order-details/:id"
