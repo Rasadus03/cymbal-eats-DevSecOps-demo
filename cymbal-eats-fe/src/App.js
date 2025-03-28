@@ -31,7 +31,8 @@ function App() {
   const [cartItemsCount: number , setCartItemsCount] = useState();
   const [restaurants, setRestaurants] = useState([]);  // State to store restaurant data
   const [searchTerm, setSearchTerm] = useState("");  // State for search term
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]); // Filtered restaurants
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]); 
+  const [orders, setOrders] = useState([]); // Filtered restaurants
 //  const {authenticateJWT, requestLogger} = require('./Auth');
   const config = {
     apiKey: 'AIzaSyDdl5c0RADYP_LYhcxPnMy9B_MUsK8zbFY',
