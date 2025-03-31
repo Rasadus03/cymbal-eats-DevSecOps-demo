@@ -71,7 +71,7 @@ function Checkout({ cartItems, restaurants, clearCart, setCart, customer }) {
     clearCart(order.user.userId, setCart); //clear the cart after checkout
     navigate('/order-confirmation'); 
        } //redirect after checkout
-  };
+  }; 
 
    if (orderPlaced) {
         return <div>Order placed successfully!</div>;
