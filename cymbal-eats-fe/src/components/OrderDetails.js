@@ -9,7 +9,9 @@ function OrderDetails({  restaurants, customer, orders}) {
   const [orderDetails, setOrderDetails] = useState([]);
   const [data, setData] = useState();
   const {id} = useParams();
-  const order = orders.find((r) => r.orderId === parseInt(id));
+  const order = orders.find((element) => {
+      return element.orderId == parseInt(id);
+    }); 
   //get user-cart
     useEffect(() => {
  
