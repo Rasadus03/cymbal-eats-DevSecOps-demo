@@ -12,13 +12,13 @@ function OrderDetails({  restaurants, customer, orders}) {
   const order = orders.find((r) => r.orderId === parseInt(id));
   //get user-cart
     useEffect(() => {
-
+ 
       fetchOrderDetails();
 
     }, []);
     const fetchOrderDetails = async () => {
       if (customer instanceof Map) {
-      try {
+      try {  
         console.log("orders === " +  JSON.stringify(orders));
         console.log("order === " +  JSON.stringify(order));
         console.log("order2 === " +  JSON.stringify(orders.find((r) => console.log("r.orderId = "+r.orderId))));
