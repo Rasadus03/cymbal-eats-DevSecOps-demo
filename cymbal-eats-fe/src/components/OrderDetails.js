@@ -21,6 +21,7 @@ function OrderDetails({  restaurants, customer, orders}) {
       try {
         console.log("orders === " +  JSON.stringify(orders));
         console.log("order === " +  JSON.stringify(order));
+        console.log("id === " +  id);
         fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {
