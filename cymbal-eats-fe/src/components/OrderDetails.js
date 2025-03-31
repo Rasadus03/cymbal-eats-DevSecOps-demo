@@ -27,7 +27,7 @@ function OrderDetails({  restaurants, customer, orders}) {
 
         fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
-          headers: {  
+          headers: {   
             "Content-Type": "Application/JSON",
           },
           body: JSON.stringify(order),
