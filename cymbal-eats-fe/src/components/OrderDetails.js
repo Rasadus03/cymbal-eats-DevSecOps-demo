@@ -146,7 +146,7 @@ OrderDetails.propTypes = {
               timeAdded:PropTypes.string,
             })
         ).isRequired,
-      })
+      }) 
   ).isRequired,
 };
 
