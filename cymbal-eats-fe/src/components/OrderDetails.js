@@ -12,7 +12,7 @@ function OrderDetails({  restaurants, customer, orders}) {
   const order = orders.find((r) => r.orderId === parseInt(id));
   //get user-cart
     useEffect(() => {
-
+ 
       fetchOrderDetails();
 
     }, []);
