@@ -6,7 +6,6 @@ import Moment from 'moment';
 
 function Orders({ restaurants, customer, setOrders}) {
   const [orders, setOrders2] = useState([]);
-  const [order, setOrder] = useState([]);
   //get user-cart
     useEffect(() => {
       Moment.locale('en');
