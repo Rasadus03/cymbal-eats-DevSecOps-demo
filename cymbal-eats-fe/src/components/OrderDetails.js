@@ -21,7 +21,7 @@ function OrderDetails({  restaurants, customer, orders}) {
       try {
         console.log("orders === " +  JSON.stringify(orders));
         console.log("order === " +  JSON.stringify(order));
-        console.log("order2 === " +  JSON.stringify(orders.find((r) => r.orderId === parseInt(id))));
+        console.log("order2 === " +  JSON.stringify(orders.find((r) => console.log("r.orderId = "+r.orderId))));
         console.log("id === " +  parseInt(id));
 
 
