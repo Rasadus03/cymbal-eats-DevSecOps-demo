@@ -121,5 +121,5 @@ Cart.propTypes = {
      clearCart: PropTypes.func.isRequired,
   setCartItems: PropTypes.func.isRequired,
 };
- 
+   
 export default Cart;
