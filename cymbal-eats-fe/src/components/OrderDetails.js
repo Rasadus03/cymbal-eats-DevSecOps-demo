@@ -18,7 +18,7 @@ function OrderDetails({  restaurants, customer, orders}) {
     }, []);
     const fetchOrderDetails = async () => {
       if (customer instanceof Map) {
-      try {
+      try {  
         console.log("orders === " +  JSON.stringify(orders));
         console.log("order === " +  JSON.stringify(order));
         console.log("order2 === " +  JSON.stringify(orders.find((r) => console.log("r.orderId = "+r.orderId))));
