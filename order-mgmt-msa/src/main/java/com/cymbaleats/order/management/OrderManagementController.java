@@ -136,6 +136,7 @@ public class OrderManagementController {
           Map<String, Object> data = ((Map) (future.get().getData()));
           for (Map.Entry<String, Object> entry : data.entrySet()) {
             try {
+              System.out.println(entry.getKey() + ": " + entry.getValue());
               System.out.println(entry.getKey() + ": " + entry.getValue().getClass().getName());
               String methodName = "set"+ Character.toTitleCase(entry.getKey().charAt(0)) + entry.getKey().substring(1) ;
               Method method = orderItemsMethods.get(methodName);
