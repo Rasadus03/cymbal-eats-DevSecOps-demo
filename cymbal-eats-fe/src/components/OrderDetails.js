@@ -34,12 +34,13 @@ function OrderDetails({  restaurants, customer, orders}) {
           body: JSON.stringify(order),
         }).then(response => response.json())
         .then(data => {
-          //console.log(" data ==== "+JSON.stringify(data));
+          console.log(" data ==== "+JSON.stringify(data));
           setOrderDetails(data);
         })
         .catch((error) => {
           console.log(error);
         });
+      console.log("Fetched Order details:",  JSON.stringify(data));
       console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       } catch (error) {
         console.error("Could not fetch order details :", error);
