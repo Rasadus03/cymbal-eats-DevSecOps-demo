@@ -6,26 +6,21 @@ import PropTypes from 'prop-types';
 
 
 function OrderDetails({  restaurants, customer, orders}) {
-  const [orderDetails, setOrderDetails] = useState([]);
-  const [data, setData] = useState([]);
   const {id} = useParams();
   const order = orders.find((element) => {
       return element.orderId == parseInt(id);
     }); 
+  const [orderDetails, setOrderDetails] = useState([]);
+  const [data, setData] = useState([]);
   //get user-cart
     useEffect(() => {
  
       fetchOrderDetails();
 
-    }, [orderDetails]);
+    }, [order]);
     const fetchOrderDetails = async () => {
       if (customer instanceof Map) {
       try {  
-        //console.log("orders === " +  JSON.stringify(orders));
-        //console.log("order === " +  JSON.stringify(order));
-        //console.log("id2 === " +  parseInt(id)); 
- 
-
          const response = await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {   
