@@ -31,6 +31,7 @@ function OrderDetails({ restaurants, customer, orders }) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        console.log("orderDetail.length ="+orderDetail.length);
         while (orderDetail.length === 0) {
           setOrderDetails(data);
         }
