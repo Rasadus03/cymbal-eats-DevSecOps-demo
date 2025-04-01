@@ -1,7 +1,7 @@
 ###  Solution to Cymbal eats application.
 #### The solution consists of the components shown in the following diagram:
 
-![solution high level blueprint](imgs/Gke-Gateway-custom-error-page.png)
+![solution high level blueprint](Cloud-Next-Screen-Demo-App-Architecture.png)
 
 ## Solution Overview
 
