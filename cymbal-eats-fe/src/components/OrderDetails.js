@@ -108,7 +108,6 @@ OrderDetails.propTypes = {
     uuid: PropTypes.string.isRequired,
     photoURL: PropTypes.string.isRequired,
   }).isRequired, 
-  ,
   orders: PropTypes.arrayOf(
     PropTypes.shape({
       estimatedDeliveryTime: PropTypes.string.isRequired,
