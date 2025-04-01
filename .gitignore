@@ -1,1 +1,14 @@
 .DS_Store
+order-mgmt-msa/target
+order-mgmt-msa/.idea
+shopping-cart-msa/target
+shopping-cart-msa/.idea
+restaurant-msa/target
+restaurant-msa/.idea
+restaurant-menu-details-msa/target
+restaurant-menu-details-msa/.idea
+cymbal-eats-fe/build
+cymbal-eats-fe/.idea
+order-mgmt-msa/target/classes/com/cymbaleats/order/management/OrderManagementController.class
+order-mgmt-msa/target/classes/com/cymbaleats/order/management/OrderManagementController.class
+order-mgmt-msa/target/classes/com/cymbaleats/order/management/OrderManagementController.class
