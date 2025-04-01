@@ -26,7 +26,7 @@ function OrderDetails({  restaurants, customer, orders}) {
         //console.log("id2 === " +  parseInt(id)); 
  
 
-        await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
+         const data2 = await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {   
             "Content-Type": "Application/JSON",
@@ -34,15 +34,13 @@ function OrderDetails({  restaurants, customer, orders}) {
           body: JSON.stringify(order),
         }).then(response => response.json())
         .then(data => {
-          while (orderDetails.orderItems ===  undefined){
-            setOrderDetails(data);
-            setData(data);
-          }
-          console.log(" data ==== "+JSON.stringify(data));
+          return data;
         })
         .catch((error) => {
           console.log(error);
         });
+        setData(data2);
+        setOrderDetails(data2);
       console.log("Fetched Order details:",  JSON.stringify(data));
       console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       } catch (error) {
