@@ -108,6 +108,41 @@ OrderDetails.propTypes = {
     uuid: PropTypes.string.isRequired,
     photoURL: PropTypes.string.isRequired,
   }).isRequired, 
+  ,
+  orders: PropTypes.arrayOf(
+    PropTypes.shape({
+      estimatedDeliveryTime: PropTypes.string.isRequired,
+      deliveryTime: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      orderId: PropTypes.number.isRequired,
+      totalCost: PropTypes.number.isRequired,
+      shippingAddress: 
+        PropTypes.shape({
+          city: PropTypes.string.isRequired,
+          street: PropTypes.string.isRequired,
+          buildingNumber: PropTypes.string.isRequired,
+          apartmentNumber: PropTypes.string.isRequired,
+          zipCode: PropTypes.string.isRequired
+        }).isRequired,
+      orderItems: PropTypes.arrayOf(
+        PropTypes.shape({
+          restaurantId: PropTypes.number.isRequired,
+          orderId: PropTypes.number.isRequired,
+          user: PropTypes.shape({
+          userId: PropTypes.string.isRequired,
+          }).isRequired,
+          itemId: PropTypes.number.isRequired,
+          restaurantName: PropTypes.string.isRequired,
+          itemName: PropTypes.string.isRequired,
+          itemPrice: PropTypes.number.isRequired,
+          itemDescription: PropTypes.string,
+          itemImageUrl: PropTypes.string.isRequired,
+          quantity: PropTypes.number.isRequired,
+          timeAdded: PropTypes.string,
+        })
+      ).isRequired,
+    })
+  ).isRequired,
 };
 
 export default OrderDetails;
