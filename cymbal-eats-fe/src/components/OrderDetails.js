@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
  
 
@@ -17,7 +17,7 @@ function OrderDetails({  restaurants, customer, orders}) {
  
       fetchOrderDetails();
 
-    }, []);
+    }, [orderDetails]);
     const fetchOrderDetails = async () => {
       if (customer instanceof Map) {
       try {  
@@ -26,23 +26,20 @@ function OrderDetails({  restaurants, customer, orders}) {
         //console.log("id2 === " +  parseInt(id)); 
  
 
-        await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
+         const response = await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {   
             "Content-Type": "Application/JSON",
           },
           body: JSON.stringify(order),
-        }).then(response => response.json())
-        .then(data => {
-          while (orderDetails.orderItems ===  undefined){
-            setOrderDetails(data);
-            setData(data);
-          }
-          console.log(" data ==== "+JSON.stringify(data));
-        })
-        .catch((error) => {
-          console.log(error);
         });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data2 = await response.json();
+        setData(data2);
+        setOrderDetails(data2);
+        console.log("Fetched Order details:",  JSON.stringify(data2));
       console.log("Fetched Order details:",  JSON.stringify(data));
       console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       } catch (error) {
