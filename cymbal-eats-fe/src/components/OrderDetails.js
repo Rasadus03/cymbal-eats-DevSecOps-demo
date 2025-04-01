@@ -10,8 +10,8 @@ function OrderDetails({ restaurants, customer, orders }) {
   const order = orders.find((element) => {
     return element.orderId == parseInt(id);
   });
-  const [orderDetail, setOrderDetail] = useState([]);
-  //get user-cart
+  const [orderDetail, setOrderDetails] = useState([]);
+
   useEffect(() => {
 
     fetchOrderDetails();
@@ -31,7 +31,9 @@ function OrderDetails({ restaurants, customer, orders }) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setOrderDetail(data);
+        while (orderDetail.length !== 0) {
+          setOrderDetails(data);
+        }
         console.log("Fetched Order details:", JSON.stringify(data));
         console.log("Fetched Order details:", JSON.stringify(orderDetail));
       } catch (error) {
