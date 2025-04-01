@@ -36,7 +36,7 @@ function Checkout({ cartItems, restaurants, clearCart, setCart, customer }) {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const transformed = cartItems.map(({ restaurantId, restaurantName , itemId, itemName, itemDescription, itemPrice, itemImageUrl, timeAdded, userId, quantity }) => ({ restaurantId: restaurantId, restaurantName: restaurantName , itemId: id, itemName: name, itemDescription: descripton, itemPrice: price, itemImageUrl: image, timeAdded: timeAdded, userId: userId, quantity:quantity}));
+    const transformed = cartItems.map(({ restaurantId, restaurantName , id, name, descripton, price, image, timeAdded, userId, quantity }) => ({ restaurantId: restaurantId, restaurantName: restaurantName , itemId: id, itemName: name, itemDescription: descripton , itemPrice: price, itemImageUrl: image, timeAdded: timeAdded, userId: userId, quantity:quantity}));
     if (customer instanceof Map) {
     const order = {
       user: {
