@@ -1,7 +1,0 @@
-com/cymbaleats/order/management/User.class
-com/cymbaleats/order/management/Address.class
-com/cymbaleats/order/management/OrderManagementController.class
-com/cymbaleats/order/management/OrderItem.class
-com/cymbaleats/order/management/OrderManagementApplication.class
-com/cymbaleats/order/management/Order$Status.class
-com/cymbaleats/order/management/Order.class
