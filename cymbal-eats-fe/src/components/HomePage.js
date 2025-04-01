@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 function HomePage({customer}) {
   const [welcome, setWelcome] = useState([]);
     useEffect(() => {
+  console.log ("customer"+JSON.stringify(customer));
   if (customer instanceof Map ) {
+    const customerName = customer.get("name")
    setWelcome( "Welcome back," +customerName);
   } else {
     setWelcome("Welcome to Cymbal Eats Food Delivery!");
