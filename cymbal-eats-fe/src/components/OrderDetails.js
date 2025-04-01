@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 function OrderDetails({  restaurants, customer, orders}) {
   const [orderDetails, setOrderDetails] = useState([]);
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const {id} = useParams();
   const order = orders.find((element) => {
       return element.orderId == parseInt(id);
@@ -34,8 +34,10 @@ function OrderDetails({  restaurants, customer, orders}) {
           body: JSON.stringify(order),
         }).then(response => response.json())
         .then(data => {
-          setOrderDetails(data);
-          setData(data);
+          while (orderDetails.orderItems !==  undefined){
+            setOrderDetails(data);
+            setData(data);
+          }
           console.log(" data ==== "+JSON.stringify(data));
         })
         .catch((error) => {
