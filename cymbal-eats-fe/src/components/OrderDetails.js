@@ -26,7 +26,7 @@ function OrderDetails({  restaurants, customer, orders}) {
         //console.log("id2 === " +  parseInt(id)); 
  
 
-        fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
+        await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {   
             "Content-Type": "Application/JSON",
