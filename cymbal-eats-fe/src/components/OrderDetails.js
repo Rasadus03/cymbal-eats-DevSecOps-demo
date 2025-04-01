@@ -34,7 +34,7 @@ function OrderDetails({  restaurants, customer, orders}) {
           body: JSON.stringify(order),
         }).then(response => response.json())
         .then(data => {
-          while (orderDetails.orderItems !==  undefined){
+          while (orderDetails.orderItems ===  undefined){
             setOrderDetails(data);
             setData(data);
           }
