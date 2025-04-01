@@ -10,7 +10,7 @@ function OrderDetails({ restaurants, customer, orders }) {
   const order = orders.find((element) => {
     return element.orderId == parseInt(id);
   });
-  const [orderDetails, setOrderDetails2] = useState([]);
+  const [orderDetail, setOrderDetail] = useState([]);
   //get user-cart
   useEffect(() => {
 
@@ -31,9 +31,9 @@ function OrderDetails({ restaurants, customer, orders }) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setOrderDetails2(data);
+        setOrderDetail(data);
         console.log("Fetched Order details:", JSON.stringify(data));
-        console.log("Fetched Order details:", JSON.stringify(orderDetails));
+        console.log("Fetched Order details:", JSON.stringify(orderDetail));
       } catch (error) {
         console.error("Could not fetch order details :", error);
       }
@@ -57,16 +57,16 @@ function OrderDetails({ restaurants, customer, orders }) {
   return (
     <div className="cart">
       <h2>Your Order Details</h2>
-      {orderDetails.orderItems !== undefined ? (
+      {orderDetail.orderItems !== undefined ? (
         <>
           <ul>
             <div>
-              Order#: {orderDetails.orderId} - Delivery time: {orderDetails.estimatedDeliveryTime} - Status: {orderDetails.status} - Total: ${parseFloat(orderDetails.price)}
+              Order#: {orderDetail.orderId} - Delivery time: {orderDetail.estimatedDeliveryTime} - Status: {orderDetail.status} - Total: ${parseFloat(orderDetail.price)}
             </div>
             <div>
-              Delivery Address: Street: {orderDetails.shippingAddress.street} - Building#: {orderDetails.shippingAddress.buildingNumber} - Apartment#: {orderDetails.shippingAddress.apartmentNumber} - City: {orderDetails.shippingAddress.city} - ZipCode# {orderDetails.shippingAddress.zipcode}
+              Delivery Address: Street: {orderDetail.shippingAddress.street} - Building#: {orderDetail.shippingAddress.buildingNumber} - Apartment#: {orderDetail.shippingAddress.apartmentNumber} - City: {orderDetail.shippingAddress.city} - ZipCode# {orderDetail.shippingAddress.zipcode}
             </div>
-            {orderDetails.orderItems.map((item) => (
+            {orderDetail.orderItems.map((item) => (
               <li key={item.itemId} className="cart-item">
                 <div>
                   {getRestaurantName(item.restaurantId)} - {item.name} - ${parseFloat(item.itemPrice).toFixed(2)}
@@ -107,7 +107,8 @@ OrderDetails.propTypes = {
     email: PropTypes.string.isRequired,
     uuid: PropTypes.string.isRequired,
     photoURL: PropTypes.string.isRequired,
-  }).isRequired,
+  }).isRequired, 
+  ,
   orders: PropTypes.arrayOf(
     PropTypes.shape({
       estimatedDeliveryTime: PropTypes.string.isRequired,
@@ -115,27 +116,27 @@ OrderDetails.propTypes = {
       status: PropTypes.string.isRequired,
       orderId: PropTypes.number.isRequired,
       totalCost: PropTypes.number.isRequired,
-      shippingAddress: PropTypes.arrayOf(
+      shippingAddress: 
         PropTypes.shape({
-          userId: PropTypes.string.isRequired,
-          orderId: 1,
-          addressId: 1,
           city: PropTypes.string.isRequired,
           street: PropTypes.string.isRequired,
           buildingNumber: PropTypes.string.isRequired,
           apartmentNumber: PropTypes.string.isRequired,
           zipCode: PropTypes.string.isRequired
-        })).isRequired,
+        }).isRequired,
       orderItems: PropTypes.arrayOf(
         PropTypes.shape({
           restaurantId: PropTypes.number.isRequired,
           orderId: PropTypes.number.isRequired,
+          user: PropTypes.shape({
           userId: PropTypes.string.isRequired,
-          menuItemId: PropTypes.number.isRequired,
-          name: PropTypes.string.isRequired,
-          price: PropTypes.number.isRequired,
-          description: PropTypes.string,
-          imageURL: PropTypes.string.isRequired,
+          }).isRequired,
+          itemId: PropTypes.number.isRequired,
+          restaurantName: PropTypes.string.isRequired,
+          itemName: PropTypes.string.isRequired,
+          itemPrice: PropTypes.number.isRequired,
+          itemDescription: PropTypes.string,
+          itemImageUrl: PropTypes.string.isRequired,
           quantity: PropTypes.number.isRequired,
           timeAdded: PropTypes.string,
         })
