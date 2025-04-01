@@ -34,8 +34,9 @@ function OrderDetails({  restaurants, customer, orders}) {
           body: JSON.stringify(order),
         }).then(response => response.json())
         .then(data => {
-          console.log(" data ==== "+JSON.stringify(data));
           setOrderDetails(data);
+          setData(data);
+          console.log(" data ==== "+JSON.stringify(data));
         })
         .catch((error) => {
           console.log(error);
