@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
  
 
@@ -17,7 +17,7 @@ function OrderDetails({  restaurants, customer, orders}) {
  
       fetchOrderDetails();
 
-    }, []);
+    }, [orderDetails]);
     const fetchOrderDetails = async () => {
       if (customer instanceof Map) {
       try {  
