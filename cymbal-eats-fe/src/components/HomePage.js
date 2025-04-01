@@ -3,19 +3,16 @@ import {React, useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function HomePage({customerName}) {
+function HomePage({customer}) {
   const [welcome, setWelcome] = useState([]);
     useEffect(() => {
-  
-     
-  console.log ("test wwww ===" +customerName.length +"---");
-  if (customerName !== "None" && customerName.length >0 ) {
+  if (customer instanceof Map ) {
    setWelcome( "Welcome back," +customerName);
   } else {
     setWelcome("Welcome to Cymbal Eats Food Delivery!");
   }
   
-    }, [customerName]);
+    }, [customer]);
   
   return (
     <div className="home-page">
@@ -26,6 +23,11 @@ function HomePage({customerName}) {
   );
 }
 HomePage.propTypes = {
-  customerName: PropTypes.string.isRequired};
+  customer: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      uuid: PropTypes.string.isRequired,
+      photoURL: PropTypes.string.isRequired,
+    }).isRequired,};
 
 export default HomePage;
