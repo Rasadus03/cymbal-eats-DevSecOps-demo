@@ -7,7 +7,6 @@ function RestaurantDetails({ restaurants, addToCart }) {
   const {id} = useParams();
   const restaurant = restaurants.find((r) => r.id === parseInt(id));
   const [restaurantMenu, setRestaurantMenu] = useState([]);
-  const [isBusy, setBusy] = useState(true)
 
   //get Restaurant's Menu
   useEffect(() => {
