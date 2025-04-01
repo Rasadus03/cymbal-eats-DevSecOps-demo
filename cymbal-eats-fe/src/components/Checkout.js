@@ -36,6 +36,7 @@ function Checkout({ cartItems, restaurants, clearCart, setCart, customer }) {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    const transformed = cartItems.map(({ restaurantId, restaurantName , itemId, itemName, itemDescription, itemPrice, itemImageUrl, timeAdded, userId, quantity }) => ({ restaurantId: restaurantId, restaurantName: restaurantName , itemId: id, itemName: name, itemDescription: descripton, itemPrice: price, itemImageUrl: image, timeAdded: timeAdded, userId: userId, quantity:quantity}));
     if (customer instanceof Map) {
     const order = {
       user: {
@@ -49,7 +50,7 @@ function Checkout({ cartItems, restaurants, clearCart, setCart, customer }) {
         street: street
       },
       totalCost: getTotalPrice() ,
-      orderItems: cartItems
+      orderItems: transformed
     };
     console.log("order " +  JSON.stringify(order));
     fetch("https://cymbal-eats.com//order-mgmt-api/place-order", {
