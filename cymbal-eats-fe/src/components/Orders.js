@@ -25,8 +25,8 @@ function Orders({ restaurants, customer, setOrders}) {
         }
         const data = await response.json();
         console.log("Fetched Orders:", data);
-        setOrders2(data);
         setOrders(data);
+        setOrders2(data);
       } catch (error) {
         console.error("Could not fetch restaurant details :", error);
         // Handle errors, e.g., display an error message to the user
