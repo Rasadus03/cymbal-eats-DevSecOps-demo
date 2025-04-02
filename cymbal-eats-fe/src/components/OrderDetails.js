@@ -23,20 +23,17 @@ function OrderDetails({  restaurants, customer, orders}) {
       if (customer instanceof  Map){
         console.log("order === " +   JSON.stringify(orders));
         console.log("order to get its details === " +  JSON.stringify(order));
-        await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
+        
+
+        const response= await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {
             "Content-Type": "Application/JSON",
           },
           body: JSON.stringify(order),
-        }).then(response => response.json())
-            .then(data => {
-              console.log(" data ==== "+JSON.stringify(data));
-              setOrderDetails(data);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+        });
+        const { data }: any = await response.json();
+        setOrderDetails(data);
         console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       }
     };
