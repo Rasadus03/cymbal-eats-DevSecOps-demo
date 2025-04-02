@@ -33,7 +33,8 @@ function OrderDetails({  restaurants, customer, orders}) {
           body: JSON.stringify(order),
         });
         const { data }: any = await response.json();
-        setOrderDetails(data);
+        await setOrderDetails(data);
+        console.log("Fetched Order details - data :",  JSON.stringify(data));
         console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       }
     };
