@@ -23,7 +23,7 @@ function OrderDetails({  restaurants, customer, orders}) {
       if (customer instanceof  Map){
         console.log("order === " +   JSON.stringify(orders));
         console.log("order to get its details === " +  JSON.stringify(order));
-        fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
+        await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {
             "Content-Type": "Application/JSON",
