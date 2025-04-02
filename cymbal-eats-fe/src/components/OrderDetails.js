@@ -75,17 +75,7 @@ function OrderDetails({  restaurants, customer, orders}) {
                       </div>
                       </li>
 
-                        {orderDetails.orderItems.map((item) => (
-                            <li key={item.menuItemId} className="cart-item">
-                              <img src={item.imageURL} alt={item.name}  />
-                              <div>
-                                {getRestaurantName(item.restaurantId)} - {item.itemName} - ${parseFloat(item.price).toFixed(2)}
-                              </div>
-                              <div>
-                                Quantity:{item.quantity}
-                                </div>
-                            </li>
-                        ))}
+                       
                     </ul>
                 </>
             ):
