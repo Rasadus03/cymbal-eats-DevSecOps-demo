@@ -55,7 +55,7 @@ function OrderDetails({  restaurants, customer, orders}) {
     return (
         <div className="cart">
           <h2>Your Order Details</h2>
-          {orderDetails.orderItems !==  undefined ? (
+          {orderDetails !==  undefined ? (
            
                 <>
                     <ul>
