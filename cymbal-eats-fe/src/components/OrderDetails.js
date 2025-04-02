@@ -57,31 +57,31 @@ function OrderDetails({  restaurants, customer, orders}) {
     return (
         <div className="cart">
           <h2>Your Order Details</h2>
-          {orderDetails.orderItems !==  undefined  ? (
-           
+          {orderDetails.length > 0  ? (
+           orderDetails.map((orderDetail) => (
            <>
                <ul>
                  <li  className="cart-item">
                  <div>
-                   Order#: {orderDetails.orderId} -----  Status: {orderDetails.status} - Total: ${parseFloat(orderDetails.totalCost)}
+                   Order#: {orderDetail.orderId} -----  Status: {orderDetail.status} - Total: ${parseFloat(orderDetail.totalCost)}
                  </div>
                  </li>
                  <li  className="cart-item">
                  <div>
-                   OrDelivery time: {orderDetails.estimatedDeliveryTime}
+                   OrDelivery time: {orderDetail.estimatedDeliveryTime}
                  </div>
                </li>
                  <li  className="cart-item">
                  <div>
-                  Total: ${parseFloat(orderDetails.totalCost)}
+                  Total: ${parseFloat(orderDetail.totalCost)}
                  </div>
                  </li>
                  <li  className="cart-item">
-                     <div> Delivery Address: Street: {orderDetails.shippingAddress.street} - Building#: .shippingAddress.buildingNumber} - Apartment#: {orderDetails.shippingAddress.apartmentNumber} - City: {orderDetails.shippingAddress.city} - ZipCode# {orderDetails.shippingAddress.zipcode}
+                     <div> Delivery Address: Street: {orderDetail.shippingAddress.street} - Building#: {orderDetail.shippingAddress.buildingNumber} - Apartment#: {orderDetail.shippingAddress.apartmentNumber} - City: {orderDetail.shippingAddress.city} - ZipCode# {orderDetail.shippingAddress.zipcode}
 
                      </div>
                  </li>
-                   {orderDetails.orderItems.map((item) => (
+                   {orderDetail.orderItems.map((item) => (
                        <li key={item.menuItemId} className="cart-item">
                          <img src={item.imageURL} alt={item.name}  />
                          <div>
@@ -94,7 +94,7 @@ function OrderDetails({  restaurants, customer, orders}) {
                    ))}
                </ul>
            </>
-       ):
+           ))):
        <p>Loading....</p>}
 
         </div>
