@@ -54,45 +54,7 @@ function OrderDetails({  restaurants, customer, orders}) {
     return (
         <div className="cart">
           <h2>Your Order Details</h2>
-          {Object.keys(orderDetails).length !==  0 && orderDetails.constructor === Object} ? (
-           
-                <>
-                    <ul>
-                      <li  className="cart-item">
-                      <div>
-                        Order#: {orderDetails.orderId} -----  Status: {orderDetails.status} - Total: ${parseFloat(orderDetails.totalCost)}
-                      </div>
-                      </li>
-                      <li  className="cart-item">
-                      <div>
-                        OrDelivery time: {orderDetails.estimatedDeliveryTime}
-                      </div>
-                    </li>
-                      <li  className="cart-item">
-                      <div>
-                       Total: ${parseFloat(orderDetails.totalCost)}
-                      </div>
-                      </li>
-                      <li  className="cart-item">
-                          <div> Delivery Address: Street: {orderDetails.shippingAddress.street} - Building#: .shippingAddress.buildingNumber} - Apartment#: {orderDetails.shippingAddress.apartmentNumber} - City: {orderDetails.shippingAddress.city} - ZipCode# {orderDetails.shippingAddress.zipcode}
-
-                          </div>
-                      </li>
-                        {orderDetails.orderItems.map((item) => (
-                            <li key={item.menuItemId} className="cart-item">
-                              <img src={item.imageURL} alt={item.name}  />
-                              <div>
-                                {getRestaurantName(item.restaurantId)} - {item.itemName} - ${parseFloat(item.price).toFixed(2)}
-                              </div>
-                              <div>
-                                Quantity:{item.quantity}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            ):
-            <p>Loading....</p>}
+          
 
         </div>
     );
