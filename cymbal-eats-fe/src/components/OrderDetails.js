@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 //import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {Link, useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Moment from 'moment';
 
 
 function OrderDetails({  restaurants, customer, orders}) {
@@ -12,6 +13,7 @@ function OrderDetails({  restaurants, customer, orders}) {
   const [orderDetails, setOrderDetails] = useState({});
 
     useEffect(() => {
+      Moment.locale('en');
       console.log("order === " +   JSON.stringify(orders));
       console.log ("In Order " + order+" "+(customer instanceof  Map));
       setOrderDetails({"user": "Rania"});
@@ -57,35 +59,40 @@ function OrderDetails({  restaurants, customer, orders}) {
     return (
         <div className="cart">
           <h2>Your Order Details</h2>
-          {orderDetails.orderItems !==  undefined  ? (
-           
+          {orderDetails.length > 0  ? (
+           orderDetails.map((orderDetail) => (
            <>
                <ul>
                  <li  className="cart-item">
                  <div>
-                   Order#: {orderDetails.orderId} -----  Status: {orderDetails.status} - Total: ${parseFloat(orderDetails.totalCost)}
+                   Order#: {orderDetail.orderId} 
                  </div>
                  </li>
                  <li  className="cart-item">
                  <div>
-                   OrDelivery time: {orderDetails.estimatedDeliveryTime}
-                 </div>
-               </li>
-                 <li  className="cart-item">
-                 <div>
-                  Total: ${parseFloat(orderDetails.totalCost)}
+                    Status: {orderDetail.status} 
                  </div>
                  </li>
                  <li  className="cart-item">
-                     <div> Delivery Address: Street: {orderDetails.shippingAddress.street} - Building#: .shippingAddress.buildingNumber} - Apartment#: {orderDetails.shippingAddress.apartmentNumber} - City: {orderDetails.shippingAddress.city} - ZipCode# {orderDetails.shippingAddress.zipcode}
+                 <div>
+                   Delivery time: {Moment(orderDetail.estimatedDeliveryTime).format('d MMM HH:MM')}
+                 </div>
+               </li>  
+                 <li  className="cart-item">
+                 <div>
+                  Total: ${parseFloat(orderDetail.totalCost)}
+                 </div>
+                 </li>
+                 <li  className="cart-item">
+                     <div> Delivery Address: Street: {orderDetail.shippingAddress.street} - Building#: {orderDetail.shippingAddress.buildingNumber} - Apartment#: {orderDetail.shippingAddress.apartmentNumber} - City: {orderDetail.shippingAddress.city} - ZipCode# {orderDetail.shippingAddress.zipcode}
 
                      </div>
                  </li>
-                   {orderDetails.orderItems.map((item) => (
-                       <li key={item.menuItemId} className="cart-item">
-                         <img src={item.imageURL} alt={item.name}  />
+                   {orderDetail.orderItems.map((item) => (
+                       <li key={item.itemId} className="cart-item">
+                         <img src={item.itemImageUrl} alt={item.itemName}  />
                          <div>
-                           {getRestaurantName(item.restaurantId)} - {item.itemName} - ${parseFloat(item.price).toFixed(2)}
+                           {getRestaurantName(item.restaurantId)} - {item.itemName} - ${parseFloat(item.itemPrice).toFixed(2)}
                          </div>
                          <div>
                            Quantity:{item.quantity}
@@ -94,7 +101,7 @@ function OrderDetails({  restaurants, customer, orders}) {
                    ))}
                </ul>
            </>
-       ):
+           ))):
        <p>Loading....</p>}
 
         </div>
