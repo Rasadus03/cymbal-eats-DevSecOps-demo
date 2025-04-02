@@ -25,17 +25,17 @@ function OrderDetails({  restaurants, customer, orders}) {
         console.log("order to get its details === " +  JSON.stringify(order));
         
 
-        const response= await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
+        const response2= await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {
             "Content-Type": "Application/JSON",
           },
           body: JSON.stringify(order),
         });
-        console.log("Response:", JSON.stringify(response));
-        const { data }: any = await response.json();
-        await setOrderDetails(data);
-        console.log("Fetched Order details - data :",  JSON.stringify(data));
+        console.log("Response:", JSON.stringify(response2));
+        const  data2 = await response2.json();
+        await setOrderDetails(data2);
+        console.log("Fetched Order details - data :",  JSON.stringify(data2));
         console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       }
     };
