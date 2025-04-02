@@ -10,7 +10,7 @@ function OrderDetails({  restaurants, customer, orders}) {
     return element.orderId == parseInt(id);
   });
   const [orderDetails, setOrderDetails] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
 
     useEffect(() => {
       console.log("order === " +   JSON.stringify(orders));
