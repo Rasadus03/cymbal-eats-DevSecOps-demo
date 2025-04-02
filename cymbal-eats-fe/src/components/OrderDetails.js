@@ -9,7 +9,7 @@ function OrderDetails({  restaurants, customer, orders}) {
   const order = orders.find((element) => {
     return element.orderId == parseInt(id);
   });
-  const [orderDetails, setOrderDetails] = useState([]);
+  const [orderDetails, setOrderDetails] = useState();
   const [data, setData] = useState({});
 
     useEffect(() => {
@@ -32,7 +32,7 @@ function OrderDetails({  restaurants, customer, orders}) {
           },
           body: JSON.stringify(order),
         });
-        console.log("Response:", JSON.stringify(response2));
+        console.log("orderDetails before:", JSON.stringify(orderDetails));
         await setOrderDetails(await response2.json());
         console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       }
