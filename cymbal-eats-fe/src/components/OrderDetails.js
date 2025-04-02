@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 //import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {Link, useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Moment from 'moment';
 
 
 function OrderDetails({  restaurants, customer, orders}) {
@@ -12,6 +13,7 @@ function OrderDetails({  restaurants, customer, orders}) {
   const [orderDetails, setOrderDetails] = useState({});
 
     useEffect(() => {
+      Moment.locale('en');
       console.log("order === " +   JSON.stringify(orders));
       console.log ("In Order " + order+" "+(customer instanceof  Map));
       setOrderDetails({"user": "Rania"});
@@ -63,14 +65,19 @@ function OrderDetails({  restaurants, customer, orders}) {
                <ul>
                  <li  className="cart-item">
                  <div>
-                   Order#: {orderDetail.orderId} -----  Status: {orderDetail.status} - Total: ${parseFloat(orderDetail.totalCost)}
+                   Order#: {orderDetail.orderId} 
                  </div>
                  </li>
                  <li  className="cart-item">
                  <div>
-                   OrDelivery time: {orderDetail.estimatedDeliveryTime}
+                    Status: {orderDetail.status} 
                  </div>
-               </li>
+                 </li>
+                 <li  className="cart-item">
+                 <div>
+                   Delivery time: {Moment(orderDetail.estimatedDeliveryTime).format('d MMM HH:MM')}
+                 </div>
+               </li>  
                  <li  className="cart-item">
                  <div>
                   Total: ${parseFloat(orderDetail.totalCost)}
@@ -82,10 +89,10 @@ function OrderDetails({  restaurants, customer, orders}) {
                      </div>
                  </li>
                    {orderDetail.orderItems.map((item) => (
-                       <li key={item.menuItemId} className="cart-item">
-                         <img src={item.imageURL} alt={item.name}  />
+                       <li key={item.itemId} className="cart-item">
+                         <img src={item.itemImageUrl} alt={item.itemName}  />
                          <div>
-                           {getRestaurantName(item.restaurantId)} - {item.itemName} - ${parseFloat(item.price).toFixed(2)}
+                           {getRestaurantName(item.restaurantId)} - {item.itemName} - ${parseFloat(item.itemPrice).toFixed(2)}
                          </div>
                          <div>
                            Quantity:{item.quantity}
