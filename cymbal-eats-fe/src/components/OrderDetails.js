@@ -57,7 +57,7 @@ function OrderDetails({  restaurants, customer, orders}) {
     return (
         <div className="cart">
           <h2>Your Order Details</h2>
-          {/*Object.keys(orderDetails).length !==  0 && orderDetails.constructor === Object} ? (
+          {orderDetails.orderItems !==  undefined  ? (
            
            <>
                <ul>
@@ -95,7 +95,7 @@ function OrderDetails({  restaurants, customer, orders}) {
                </ul>
            </>
        ):
-       <p>Loading....</p>*/}
+       <p>Loading....</p>}
 
         </div>
     );
