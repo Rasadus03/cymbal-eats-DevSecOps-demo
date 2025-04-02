@@ -14,8 +14,9 @@ function OrderDetails({  restaurants, customer, orders}) {
     useEffect(() => {
       console.log("order === " +   JSON.stringify(orders));
       console.log ("In Order " + order+" "+(customer instanceof  Map));
+      setOrderDetails({"user": "Rania"});
       fetchOrderDetails();
-    }, [orderDetails]);
+    }, []);
 
 
     const fetchOrderDetails = async () => {
