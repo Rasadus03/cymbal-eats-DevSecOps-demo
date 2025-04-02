@@ -1,90 +1,105 @@
-
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+//import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
-
-function OrderDetails({ restaurants, customer, orders }) {
-  const { id } = useParams();
+function OrderDetails({  restaurants, customer, orders}) {
+  const {id} = useParams();
   const order = orders.find((element) => {
     return element.orderId == parseInt(id);
   });
-  const [orderDetail, setOrderDetails] = useState([]);
+  const [orderDetails, setOrderDetails] = useState([]);
+  const [data, setData] = useState([]);
 
-  useEffect(() => {
+    useEffect(() => {
+      console.log("order === " +   JSON.stringify(orders));
+      console.log ("In Order " + order+" "+(customer instanceof  Map));
+      fetchOrderDetails();
+    }, []);
 
-    fetchOrderDetails();
 
-  }, []);
-  const fetchOrderDetails = async () => {
-    if (customer instanceof Map) {
-      try {
-        const response = await fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
+    const fetchOrderDetails = async () => {
+      if (customer instanceof  Map){
+        console.log("order === " +   JSON.stringify(orders));
+        console.log("order to get its details === " +  JSON.stringify(order));
+        fetch("https://cymbal-eats.com/order-mgmt-api/get-order-details", {
           method: "POST",
           headers: {
             "Content-Type": "Application/JSON",
           },
           body: JSON.stringify(order),
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log("orderDetail.length ="+orderDetail.length);
-        while (orderDetail.length === 0) {
-          setOrderDetails(data);
-        }
-        console.log("Fetched Order details:", JSON.stringify(data));
-        console.log("Fetched Order details:", JSON.stringify(orderDetail));
-      } catch (error) {
-        console.error("Could not fetch order details :", error);
+        }).then(response => response.json())
+            .then(data => {
+              console.log(" data ==== "+JSON.stringify(data));
+              setOrderDetails(data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       }
-    }
-  };
+    };
 
 
-  const getRestaurantName = (restaurantId) => {
-    const restaurant = restaurants.find((element) => {
-      return element.id == restaurantId;
-    });
-    console.log("restaurant =" + restaurant);
-    console.log("restaurantId =" + restaurantId + "@");
-    console.log("restaurants =" + restaurants);
+     const getRestaurantName = (restaurantId) => {
+        const restaurant = restaurants.find((element) => {
+          return element.id == restaurantId;
+        });
+       console.log("restaurant =" +restaurant);
+        console.log("restaurantId =" +restaurantId+"@");
+        console.log("restaurants =" +restaurants);
 
-    restaurants.map((field) => console.log("field =" + field.id + "@"));
-    return restaurant ? restaurant.name : 'Unknown Restaurant';
-  };
+       // restaurants.map((field) => console.log("field ="+field.id+"@"));
+        return restaurant ? restaurant.name : 'Unknown Restaurant';
+    };
 
 
-  return (
-    <div className="cart">
-      <h2>Your Order Details</h2>
-      {orderDetail.orderItems !== undefined ? (
-        <>
-          <ul>
-            <div>
-              Order#: {orderDetail.orderId} - Delivery time: {orderDetail.estimatedDeliveryTime} - Status: {orderDetail.status} - Total: ${parseFloat(orderDetail.price)}
-            </div>
-            <div>
-              Delivery Address: Street: {orderDetail.shippingAddress.street} - Building#: {orderDetail.shippingAddress.buildingNumber} - Apartment#: {orderDetail.shippingAddress.apartmentNumber} - City: {orderDetail.shippingAddress.city} - ZipCode# {orderDetail.shippingAddress.zipcode}
-            </div>
-            {orderDetail.orderItems.map((item) => (
-              <li key={item.itemId} className="cart-item">
-                <div>
-                  {getRestaurantName(item.restaurantId)} - {item.name} - ${parseFloat(item.itemPrice).toFixed(2)}
-                </div>
-                <div>
-                  Quantity:{item.quantity}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </>
-      ) :
-        <p>Loading....</p>}
-    </div>
-  );
+    return (
+        <div className="cart">
+          <h2>Your Order Details</h2>
+          {orderDetails.orderItems !==  undefined ? (
+           
+                <>
+                    <ul>
+                      <li  className="cart-item">
+                      <div>
+                        Order#: {orderDetails.orderId} -----  Status: {orderDetails.status} - Total: ${parseFloat(orderDetails.totalCost)}
+                      </div>
+                      </li>
+                      <li  className="cart-item">
+                      <div>
+                        OrDelivery time: {orderDetails.estimatedDeliveryTime}
+                      </div>
+                    </li>
+                      <li  className="cart-item">
+                      <div>
+                       Total: ${parseFloat(orderDetails.totalCost)}
+                      </div>
+                      </li>
+                      <li  className="cart-item">
+                          <div> Delivery Address: Street: {orderDetails.shippingAddress.street} - Building#: .shippingAddress.buildingNumber} - Apartment#: {orderDetails.shippingAddress.apartmentNumber} - City: {orderDetails.shippingAddress.city} - ZipCode# {orderDetails.shippingAddress.zipcode}
+
+                          </div>
+                      </li>
+                        {orderDetails.orderItems.map((item) => (
+                            <li key={item.menuItemId} className="cart-item">
+                              <img src={item.imageURL} alt={item.name}  />
+                              <div>
+                                {getRestaurantName(item.restaurantId)} - {item.itemName} - ${parseFloat(item.price).toFixed(2)}
+                              </div>
+                              <div>
+                                Quantity:{item.quantity}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            ):
+            <p>Loading....</p>}
+
+        </div>
+    );
 }
 
 OrderDetails.propTypes = {
