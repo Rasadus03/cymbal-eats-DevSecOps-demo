@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 
 function OrderDetails({  restaurants, customer, orders}) {
   const {id} = useParams();
-  const order = orders.find((r) => r.orderId === parseInt(id));
+  const order = orders.find((element) => {
+    return element.orderId == parseInt(id);
+  });
   const [orderDetails, setOrderDetails] = useState([]);
   const [data, setData] = useState([]);
 
