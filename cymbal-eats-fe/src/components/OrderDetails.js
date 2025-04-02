@@ -19,7 +19,7 @@ function OrderDetails({  restaurants, customer, orders}) {
     }, []);
 
     useEffect(() => {
-      console.log("orderDetails"+ orderDetails);
+      console.log("orderDetails"+ JSON.stringify(orderDetails));
     }, [orderDetails]);
     const fetchOrderDetails = async () => {
       if (customer instanceof  Map){
