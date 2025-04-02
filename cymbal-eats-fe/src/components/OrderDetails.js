@@ -33,9 +33,7 @@ function OrderDetails({  restaurants, customer, orders}) {
           body: JSON.stringify(order),
         });
         console.log("Response:", JSON.stringify(response2));
-        const  data2 = await response2.json();
-        await setOrderDetails(data2);
-        console.log("Fetched Order details - data :",  JSON.stringify(data2));
+        await setOrderDetails(await response2.json());
         console.log("Fetched Order details:",  JSON.stringify(orderDetails));
       }
     };
