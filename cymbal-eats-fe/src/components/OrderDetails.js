@@ -9,8 +9,7 @@ function OrderDetails({  restaurants, customer, orders}) {
   const order = orders.find((element) => {
     return element.orderId == parseInt(id);
   });
-  const [orderDetails, setOrderDetails] = useState();
-  const [data, setData] = useState({});
+  const [orderDetails, setOrderDetails] = useState({});
 
     useEffect(() => {
       console.log("order === " +   JSON.stringify(orders));
@@ -55,7 +54,7 @@ function OrderDetails({  restaurants, customer, orders}) {
     return (
         <div className="cart">
           <h2>Your Order Details</h2>
-          {orderDetails !==  undefined ? (
+          {Object.keys(orderDetails).length !==  0 && orderDetails.constructor === Object} ? (
            
                 <>
                     <ul>
@@ -74,7 +73,11 @@ function OrderDetails({  restaurants, customer, orders}) {
                        Total: ${parseFloat(orderDetails.totalCost)}
                       </div>
                       </li>
+                      <li  className="cart-item">
+                          <div> Delivery Address: Street: {orderDetails.shippingAddress.street} - Building#: .shippingAddress.buildingNumber} - Apartment#: {orderDetails.shippingAddress.apartmentNumber} - City: {orderDetails.shippingAddress.city} - ZipCode# {orderDetails.shippingAddress.zipcode}
 
+                          </div>
+                      </li>
                         {orderDetails.orderItems.map((item) => (
                             <li key={item.menuItemId} className="cart-item">
                               <img src={item.imageURL} alt={item.name}  />
