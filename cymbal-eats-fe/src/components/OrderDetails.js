@@ -84,7 +84,7 @@ function OrderDetails({  restaurants, customer, orders}) {
                  </div>
                  </li>
                  <li  className="cart-item">
-                     <div> Delivery Address: Street: {orderDetail.shippingAddress.street} - Building#: {orderDetail.shippingAddress.buildingNumber} - Apartment#: {orderDetail.shippingAddress.apartmentNumber} - City: {orderDetail.shippingAddress.city} - ZipCode# {orderDetail.shippingAddress.zipcode}
+                     <div> Delivery Address: Street: {orderDetail.shippingAddress.street} - Building#: {orderDetail.shippingAddress.buildingNumber} - Apartment#: {orderDetail.shippingAddress.apartmentNumber} - City: {orderDetail.shippingAddress.city} - ZipCode# {orderDetail.shippingAddress.zipCode}
 
                      </div>
                  </li>
