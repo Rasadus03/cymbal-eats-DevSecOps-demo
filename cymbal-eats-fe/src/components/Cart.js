@@ -73,7 +73,7 @@ function Cart({  restaurants, removeFromCart, updateQuantity, clearCart, setCart
                                         type="number"
                                         min="1"  // Ensure quantity is at least 1
                                         value={item.quantity}
-                                        onChange={(e) => updateQuantity(item.restaurantId, item.id, parseInt(e.target.value),setCart, shoppingCartItems)}
+                                        onChange={(e) => updateQuantity(item.restaurantId, item, parseInt(e.target.value),setCart, shoppingCartItems)}
                                     />
                                     <button onClick={() => removeFromCart(item.restaurantId, item, setCart, shoppingCartItems)}>Remove</button>
                                 </div>
