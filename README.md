@@ -9,3 +9,13 @@ The application consists of a reactJS front end application and group of Springb
 Identity Platform is used for user login and user management. APIGEE is used for API managangement and securing the API. Cloud Build is used for continous integration. All services are hosted in Cloud Rund serverless instances.
 
 **Note: Please replace**
+
+**For setup Code Assist**
+1. 
+
+**For setup Cloud Assist**
+
+**For setup Jira connection**
+
+**For setup GitHub Connection**
+
