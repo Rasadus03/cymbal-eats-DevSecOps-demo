@@ -12,7 +12,7 @@ Identity Platform is used for user login and user management. APIGEE is used for
 
 **For setup Code Assist**
 
-1. In GCP Console navigate to the Admin for Gemini and enable code assist and assign subscription for the user. For more details, check the [https://cloud.google.com/gemini/docs/discover/set-up-gemini setup-Gemini-Code-Assist]
+1. In GCP Console navigate to the Admin for Gemini and enable code assist and assign subscription for the user. For more details, check the [setup-Gemini-Code-Assist] [https://cloud.google.com/gemini/docs/discover/set-up-gemini]
 2. Install VSCode and install Gemini code assist extension on the IDE. For more details check [https://cloud.google.com/gemini/docs/codeassist/write-code-gemini Gemini Code Assist plugin]
 3. Once installed login on Gemini Code Assist using the user having a code assist subscription.
 4. Try it out by pressing on the Gemni Code assit icon ![Gemini Code Assist](gemini-code-assist.png)
