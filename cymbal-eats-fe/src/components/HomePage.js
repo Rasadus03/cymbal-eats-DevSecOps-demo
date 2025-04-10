@@ -4,14 +4,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function HomePage({customer}) {
- 
+
   return (
     <div className="home-page">
-      {customer instanceof Map ? (
-        <h1>Welcome, {customer.get("name")} to Cymbal Eats Food Delivery!</h1>
-      ) : (
-        <h1>Welcome to Cymbal Eats Food Delivery!</h1>
-      )}
+              <h1>Welcome to Cymbal Eats Food Delivery!</h1>
       <p>Explore our delicious options from various restaurants.</p>
         <Link to="/restaurants" className='link-to-restaurants-button'>Browse Restaurants</Link>
     </div>
