@@ -14,6 +14,8 @@ function HomePage({customer}) {
   );
 }
 
+
+
 HomePage.propTypes = {
   customer: PropTypes.oneOfType([
     PropTypes.instanceOf(Map),
