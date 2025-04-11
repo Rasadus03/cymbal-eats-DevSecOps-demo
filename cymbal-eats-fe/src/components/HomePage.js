@@ -5,14 +5,20 @@ import PropTypes from 'prop-types';
 
 function HomePage({customer}) {
  
+  let welcomeMessage = "Welcome to Cymbal Eats Food Delivery!";
+
+  if (customer instanceof Map && customer.has("name")) {
+    welcomeMessage = `Welcome, ${customer.get("name")}!`;
+  } else if (typeof customer === 'object' && customer !== null && customer.hasOwnProperty('name')) {
+    welcomeMessage = `Welcome, ${customer.name}!`;
+  }
 
   return (
     <div className="home-page">
-                  <h1>Welcome to Cymbal Eats Food Delivery!</h1>
-
-      <p>Explore our delicious options from various restaurants.</p>
-        <Link to="/restaurants" className='link-to-restaurants-button'>Browse Restaurants</Link>
-    </div>
+    <h1>{welcomeMessage}</h1>
+    <p>Explore our delicious options from various restaurants.</p>
+    <Link to="/restaurants" className='link-to-restaurants-button'>Browse Restaurants</Link>
+  </div>
   );
 }
 
