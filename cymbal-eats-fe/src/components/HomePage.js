@@ -8,7 +8,7 @@ function HomePage({customer}) {
   let welcomeMessage = "Welcome to Cymbal Eats Food Delivery!";
 
   if (customer instanceof Map && customer.has("name")) {
-    welcomeMessage = `Welcome, ${customer.get("name")}!`;
+    welcomeMessage = `Welcome, ${customer.get("name")}! Hope you are having a delightful day`;
   } else if (typeof customer === 'object' && customer !== null && customer.hasOwnProperty('name')) {
     welcomeMessage = `Welcome, ${customer.name}!`;
   }
