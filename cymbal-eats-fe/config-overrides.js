@@ -21,6 +21,7 @@ module.exports = function override(config) {
     child_process: false,
     processor:false,
     constants: require.resolve("constants-browserify"),
+    fullySpecified: false,
   })
   config.resolve.fallback = fallback;
   config.plugins = (config.plugins || []).concat([
@@ -51,6 +52,11 @@ module.exports = function override(config) {
       }
     })
   ]);
-
+  config.module.rules.unshift({
+    test: /\.m?js$/,
+    resolve: {
+      fullySpecified: false, // disable the behavior
+    },
+  });
   return config;
 }
