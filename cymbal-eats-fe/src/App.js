@@ -24,13 +24,6 @@ import { Console } from 'winston/lib/winston/transports';
 
 
 function App() {
-  const opentelemetry = require('@opentelemetry/api');
-  const { resourceFromAttributes } = require('@opentelemetry/resources');
-  const { ATTR_SERVICE_NAME } = require('@opentelemetry/semantic-conventions');
-  const { BasicTracerProvider, ConsoleSpanExporter, SimpleSpanProcessor } = require('@opentelemetry/sdk-trace-base');
-  const { JaegerExporter } = require('@opentelemetry/exporter-jaeger');
-  const { AsyncLocalStorageContextManager } = require("@opentelemetry/context-async-hooks");
-  const {CompositePropagator, W3CTraceContextPropagator, W3CBaggagePropagator} = require("@opentelemetry/core");
   const [cartItems, setCartItems] = useState([]);
   const [customer, setCustomer] = useState([]);
   const [customerName, setCustomerName] = useState([]);
@@ -45,34 +38,9 @@ function App() {
     apiKey: 'AIzaSyDdl5c0RADYP_LYhcxPnMy9B_MUsK8zbFY',
     authDomain: 'cloud-next25-screendemo.firebaseapp.com',
   };
-  const exporter = new JaegerExporter({
-    endpoint: 'http://localhost:14268/api/traces',
-  });
+ 
   const firebase = initializeApp(config);
-  opentelemetry.trace.setGlobalTracerProvider(new BasicTracerProvider({
-    resource: resourceFromAttributes({
-      [ATTR_SERVICE_NAME]: 'basic-service',
-    }),
-    spanProcessors: [
-      new SimpleSpanProcessor(exporter),
-      new SimpleSpanProcessor(new ConsoleSpanExporter()),
-    ]
-  }));
-  opentelemetry.context.setGlobalContextManager(new AsyncLocalStorageContextManager());
-  opentelemetry.propagation.setGlobalPropagator(new CompositePropagator({ propagators: [
-    new W3CTraceContextPropagator(),
-      new W3CBaggagePropagator()]
-  }));
-  
-  const tracer = opentelemetry.trace.getTracer('example-basic-tracer-node');
-  
-  // Create a span. A span must be closed.
-  const parentSpan = tracer.startSpan('main');
-  parentSpan.addEvent('Starting the Frontend svc for cymbal eats');
-  parentSpan.end();
-  
-  // flush and close the connection.
-  exporter.shutdown();
+ 
   const  initApp = async () => {
     console.log('I am here!!!');
     const data = new Map();

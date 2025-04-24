@@ -6,11 +6,16 @@
     "node": ">=16.0.0"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.58.0",
+    "@opentelemetry/sdk-metrics": "^2.0.0",
+    "@opentelemetry/sdk-node": "^0.200.0",
+    "@opentelemetry/sdk-trace-node": "^2.0.0",
     "browserify-zlib": "^0.2.0",
     "child_process": "^1.0.2",
     "constants-browserify": "^1.0.0",
     "events": "^3.3.0",
-    "express": "^4.16.2",
+    "express": "^4.21.2",
     "firebase": "^11.4.0",
     "firebase-admin": "^12.0.0",
     "gcp-metadata": "^6.0.0",
@@ -38,23 +43,8 @@
     "tls": "^0.0.1",
     "util": "^0.12.5",
     "web-vitals": "^4.2.4",
-    "winston": "3.10.0",
-    "@opentelemetry/api": "^1.3.0",
-    "@opentelemetry/exporter-jaeger": "0.25.0",
-    "@opentelemetry/resources": "0.25.0",
-    "@opentelemetry/semantic-conventions": "^1.22.0",
-    "@opentelemetry/sdk-trace-base": "0.25.0"
+    "winston": "3.10.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/open-telemetry/opentelemetry-js.git"
-  },
-  "keywords": [
-    "opentelemetry",
-    "tracing",
-    "metrics",
-    "web"
-  ],
   "scripts": {
     "start": "GENERATE_SOURCEMAP=false && react-app-rewired start",
     "build": "react-app-rewired build",
